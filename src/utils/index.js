@@ -1,2 +1,2 @@
-import { request } from './request'
-export { request }
+import { http } from './request'
+export { http }
