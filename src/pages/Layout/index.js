@@ -1,5 +1,5 @@
 import { Layout, Menu, Popconfirm } from "antd";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate,useLocation } from "react-router-dom";
 import {
   HomeOutlined,
   DiffOutlined,
@@ -11,7 +11,7 @@ const { Header, Sider } = Layout;
 const items = [
   {
     label: "首页",
-    key: "home",
+    key: "/",
     icon: <HomeOutlined />,
   },
   {
@@ -26,6 +26,8 @@ const items = [
   },
 ];
 const GeekLayout = () => {
+  const location = useLocation()
+  const selectedKey = location.pathname
   const navigate = useNavigate();
   const menuClick = (route) => {
     navigate(route.key);
@@ -49,7 +51,7 @@ const GeekLayout = () => {
             mode="inline"
             theme="dark"
             onClick={menuClick}
-            defaultSelectedKeys={["1"]}
+            selectedKeys={selectedKey}
             items={items}
             style={{ height: "100%", borderRight: 0 }}
           ></Menu>
