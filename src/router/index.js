@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom"
 
 import Login from "../pages/Login"
-import Layout from "../pages/Layout"
+import GeekLayout from "../pages/Layout"
 
 const router = createBrowserRouter([
     {
         path:'/',
-        element:<Layout />
+        element:<GeekLayout />
     },
     {
         path:'/login',
