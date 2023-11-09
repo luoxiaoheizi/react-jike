@@ -1,4 +1,5 @@
 import { Layout, Menu, Popconfirm } from 'antd'
+import { Outlet, useNavigate } from 'react-router-dom'
 import {
     HomeOutlined,
     DiffOutlined,
@@ -25,8 +26,13 @@ import {
     },
   ]
 const GeekLayout = () => {
+  const navigate = useNavigate()
+  const menuClick = (route) => {
+    navigate(route.key)
+  }
     return (
-        <Layout>
+        <Layout className="layout-content" style={{ padding: 20 }}>
+          <Outlet />
       <Header className="header">
         <div className="logo" />
         <div className="user-info">
@@ -43,6 +49,7 @@ const GeekLayout = () => {
           <Menu
             mode="inline"
             theme="dark"
+            onClick={menuClick}
             defaultSelectedKeys={['1']}
             items={items}
             style={{ height: '100%', borderRight: 0 }}></Menu>
