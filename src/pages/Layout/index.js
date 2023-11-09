@@ -1,5 +1,5 @@
 import { Layout, Menu, Popconfirm } from "antd";
-import { fetchUserInfo } from "@/store/modules/user";
+import { fetchUserInfo,clearUserInfo } from "@/store/modules/user";
 import {useDispatch , useSelector} from 'react-redux'
 import { Outlet, useNavigate,useLocation } from "react-router-dom";
 import {
@@ -29,6 +29,10 @@ const items = [
   },
 ];
 const GeekLayout = () => {
+  const logout = () =>{
+    dispatch(clearUserInfo())
+    navigate('/login')
+  }
   const dispatch = useDispatch()
   const name = useSelector(state=>state.user.userInfo.name)
   useEffect(()=>{
@@ -47,7 +51,7 @@ const GeekLayout = () => {
         <div className="user-info">
           <span className="user-name">{name}</span>
           <span className="user-logout">
-            <Popconfirm title="是否确认退出？" okText="退出" cancelText="取消">
+            <Popconfirm title="是否确认退出？" okText="退出" onConfirm={logout} cancelText="取消">
               <LogoutOutlined /> 退出
             </Popconfirm>
           </span>
