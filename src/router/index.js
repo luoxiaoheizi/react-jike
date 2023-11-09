@@ -5,17 +5,14 @@ import Layout from "../pages/Layout"
 import Publish from '@/pages/Publish'
 import Article from '@/pages/Article'
 import Home from '@/pages/Home'
-import AuthRoute from '../components/AuthRoute'
+// import AuthRoute from '../components/AuthRoute'
 const router = createBrowserRouter([
     {
         path:'/',
-        element:(
-            <AuthRoute>
-                <Layout />
-            </AuthRoute>
-        ),
+        element:<Layout />,
         children:[
             {
+                path:'home',
                 index:true,
                 element:<Home />
             },
