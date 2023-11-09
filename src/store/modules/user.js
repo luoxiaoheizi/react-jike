@@ -2,31 +2,35 @@ import { createSlice } from '@reduxjs/toolkit'
 import { getToken, setToken } from '@/utils'
 import { http } from '@/utils'
 const userStore = createSlice({
-    name:'user',
-    initialState:{
-        token:getToken() || ''
-    },
-    reducers:{
-        setUserInfo(state,action){
-            state.token = action.payload
-            state.userInfo = action.payload
-            setToken(state.token)
-        }
+  name: 'user',
+  // 数据状态
+  initialState: {
+    token:getToken() || ''
+  },
+  // 同步修改方法
+  reducers: {
+    setUserInfo (state, action) {
+        state.token = action.payload
+        // 存入本地
+        setToken(state.token)
     }
+  }
 })
 
+// 解构出actionCreater
 const { setUserInfo } = userStore.actions
 
+// 获取reducer函数
 const userReducer = userStore.reducer
 
+// 异步方法封装
 const fetchLogin = (loginForm) => {
-    return async(dispatch)=>{
-        const res = await http.post('/authorizations',loginForm)
-        console.log(25,res);
-        dispatch(setUserInfo(res.data.token))
-    }
+  return async (dispatch) => {
+    const res = await http.post('/authorizations', loginForm)
+    dispatch(setUserInfo(res.data.token))
+  }
 }
 
-export {fetchLogin}
+export { fetchLogin }
 
 export default userReducer

@@ -2,14 +2,14 @@ import "./index.scss";
 import { Card, Form, Input, Button,message } from "antd";
 import logo from "./logo.png";
 import { fetchLogin } from '@/store/modules/user'
-// import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const onFinish = async formValue => {
-      await fetchLogin(formValue)
+      await dispatch(fetchLogin(formValue))
       navigate('/')
       message.success('登录成功')
     }

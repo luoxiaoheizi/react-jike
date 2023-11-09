@@ -17,6 +17,6 @@ function clearToken () {
 export {
   setToken,
   getToken,
-  clearToken
+  clearToken,
+  http
 }
-export { http }
